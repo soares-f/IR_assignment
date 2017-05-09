@@ -11,7 +11,7 @@ stop_es = stopwords.words('spanish')
 
 os.chdir('/home/felipe/Documents/IR')
 
-dbpath = "./db4" if len( sys.argv ) < 3 else sys.argv[2]
+dbpath = "./db4"
 
 offset = 0  # Inicia o conjunto de resultados no primeiro valor
 pagesize = 100  # Número de itens a serem retornados
@@ -48,6 +48,7 @@ enquire = xapian.Enquire(db)
 enquire.set_query(query)
 
 matches = []
+scor=[]
 for match in enquire.get_mset(offset, pagesize):
     fields = json.loads(match.document.get_data().decode('utf-8'))
     matches.append(fields)
